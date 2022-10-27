@@ -42,8 +42,7 @@ const Header = () => {
             {
               user?.uid ?
               <>
-              <Button variant="light" onClick={handleLogOut}>Log out</Button>
-              <span>{user?.displayName}</span>
+              <Button className="mx-3 mt-2" variant="light" onClick={handleLogOut}>Log out</Button>
               </>
               :
               <>
@@ -55,7 +54,7 @@ const Header = () => {
             <Nav.Link eventKey={2} href=''>
               {
                 user?.photoURL ?
-                <Image className="user-img" roundedCircle
+                <Image style={{height: '40px'}} roundedCircle
                 src={user.photoURL}></Image>
                 :<FaUser></FaUser>
               }
