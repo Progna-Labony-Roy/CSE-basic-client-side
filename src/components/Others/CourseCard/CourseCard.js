@@ -8,22 +8,22 @@ const CourseCard = ({course}) => {
     const {course_id,image_url,details}=course;
     return (
         <div >
-          <Card>
+          <Card  className='bg-secondary text-white'>
             <Card.Img variant="top" src={image_url} />
             <Card.Body>
               <Card.Title>{course.title}</Card.Title>
               <Card.Text>
-              {details.length > 200 ? (
+              {details.length > 100 ? (
             <>
-              {details.slice(0, 250) + "..."}
-              <Link to={`/course/${course_id}`}>Read More</Link>
+              {details.slice(0, 150) + "..."}
+              <Link className='text-white' to={`/course/${course_id}`}>Read More</Link>
             </>
           ) : (
             <>{details}</>
           )}
               </Card.Text>
               <Link to='/'>
-              <Button variant="primary">Home page</Button>
+              <Button variant="dark">Home page</Button>
               </Link>
             </Card.Body>
           </Card>

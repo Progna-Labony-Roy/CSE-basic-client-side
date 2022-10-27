@@ -15,6 +15,15 @@ const Course = () => {
             <p>{description}</p>
             <p>{details}</p>
             <p><img className='w-25' src={image_url} alt="" /></p>
+            <div>
+                <h5>Another subjects related to computer science</h5>
+                <ul>
+                    <li>Artificial Intelligence</li>
+                    <li>Cloud Computing</li>
+                    <li>OOP</li>
+                    <li>Deep Learning</li>
+                </ul>
+            </div>
             <div className='d-flex'>
             <Link to='/courses'>
           <Button className='mb-5 me-3' variant="primary">All course</Button>

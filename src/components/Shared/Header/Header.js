@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState ,useEffect } from 'react';
 import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -18,6 +18,22 @@ const Header = () => {
     .then(() =>{})
     .catch( (error) => console.error(error))
   }
+
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+
   return (
     <Navbar
       collapseOnSelect
@@ -36,6 +52,7 @@ const Header = () => {
           <Link to='/courses' className='link-item px-2'>Courses</Link>
             <Link to='/blog' className='link-item px-2'>Blog</Link>
             <Link to='/faq' className='link-item px-2'>FAQ</Link>
+            <Button variant="light" onClick={toggleTheme}  className={`App ${theme}`}>Toggle Theme</Button>
           </Nav>
           <Nav>
           <>
