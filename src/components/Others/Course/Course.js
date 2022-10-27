@@ -2,15 +2,29 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { Axios } from 'axios';
+import FileDownload from 'js-file-download';
 
 const Course = () => {
     const courseInfo=useLoaderData();
-    const {intro,description,image_url,details}=courseInfo;
+    const {intro,description,image_url,details,pdf}=courseInfo;
+
+    const download =(e) =>{
+        e.preventDefault();
+        Axios({
+            url:{courseInfo,pdf},
+            method:"GET",
+            responseType: "blob"
+        })
+        .then( (res) =>{
+            FileDownload(res.data,"File")
+        })
+    }
     return (
         <div>
             <div className='d-flex justify-content-between'>
             <h3 className='fst-italic w-75'>{intro}</h3>
-            <Button>DownLoad pdf</Button>
+            <Button onClick={ (e) => download(e)}>DownLoad pdf</Button>
             </div>
             <p>{description}</p>
             <p>{details}</p>

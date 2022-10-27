@@ -39,7 +39,7 @@ const Header = () => {
       collapseOnSelect
       className="mb-5 py-3"
       expand="lg"
-      bg="dark"
+      bg="primary"
       variant="dark"
     >
       <Container>
@@ -59,7 +59,9 @@ const Header = () => {
             {
               user?.uid ?
               <>
-              <Button className="mx-3 mt-2" variant="light" onClick={handleLogOut}>Log out</Button>
+              <Button className="mx-3 mt-2 py-1" variant="light" onClick={handleLogOut}>Log out</Button>
+              <Image className='me-0' style={{height: '30px'}} roundedCircle
+                src={user.photoURL}></Image>
               </>
               :
               <>
@@ -68,15 +70,22 @@ const Header = () => {
               </>
             }
             </>
-            <Tooltip title={user?.displayName} disableInteractive>
+            <>
               {
                 user?.photoURL ?
-                <Image style={{height: '30px'}} roundedCircle
-                src={user?.photoURL}></Image>
-                :<FaUser></FaUser>
+                
+                  
+                <Tooltip  title={user?.displayName}>
+                  <Image style={{height: '40px'}} roundedCircle
+                src={user.photoURL}></Image>
+                </Tooltip>
+               
+              
+                :
+                <FaUser></FaUser>
               }
 
-            </Tooltip>
+            </>
           </Nav>
         </Navbar.Collapse>
       </Container>

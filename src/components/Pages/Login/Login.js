@@ -7,13 +7,15 @@ import { AuthContext } from "../../Context/AuthProvider";
 import { useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => { 
   const { googleLogin,signIn} =useContext(AuthContext);
   const [error,setError]=useState('');
   const location=useLocation();
   const navigate=useNavigate();
+  const googleProvider = new GoogleAuthProvider();
+  const gitProvider = new GithubAuthProvider();
 
   const from=location.state?.from?.pathname || '/'
 
@@ -38,10 +40,19 @@ const Login = () => {
     })
   }
 
-  const googleProvider = new GoogleAuthProvider();
-
   const handleGoogleSignIn = () => {
     googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    googleLogin(gitProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -76,7 +87,9 @@ const Login = () => {
             {" "}
             <FaGoogle></FaGoogle> Log In with google
           </Button>
-          <Button variant="outline-dark">
+          <Button
+          onClick={handleGithubSignIn}
+          variant="outline-dark">
             <FaGithub></FaGithub> Log In with github
           </Button>
         </ButtonGroup>
