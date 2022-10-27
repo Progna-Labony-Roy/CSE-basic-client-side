@@ -10,7 +10,7 @@ const s = () => {
             <Header></Header>
             <Container>
                 <Row>
-                    <Col lg='3'>
+                    <Col lg='3' className='d-md-flex d-lg-block'>
                     <LeftSideNav></LeftSideNav>
                     </Col>
                     <Col lg='9'>
