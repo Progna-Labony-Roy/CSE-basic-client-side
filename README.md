@@ -3,6 +3,9 @@
 
 # Website Name : CSE Basic
 
+## Live site link :
+https://cosmic-hotteok-aebd09.netlify.app/
+
 ### In the project we have the following features:
 - Here we have login and register option.
 - Private route has been created for premium access and blog.
