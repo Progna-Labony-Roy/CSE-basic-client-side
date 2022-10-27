@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './CourseCard.css'
 
 const CourseCard = ({course}) => {
-    const {category_id,image_url,details}=course;
+    const {course_id,image_url,details}=course;
     return (
         <div >
           <Card>
@@ -14,15 +14,17 @@ const CourseCard = ({course}) => {
               <Card.Title>{course.title}</Card.Title>
               <Card.Text>
               {details.length > 200 ? (
-            <p>
+            <>
               {details.slice(0, 250) + "..."}
-              <Link to={`/course/${category_id}`}>Read More</Link>
-            </p>
+              <Link to={`/course/${course_id}`}>Read More</Link>
+            </>
           ) : (
             <>{details}</>
           )}
               </Card.Text>
-              <Button variant="primary">Details</Button>
+              <Link to='/'>
+              <Button variant="primary">Home page</Button>
+              </Link>
             </Card.Body>
           </Card>
         </div>

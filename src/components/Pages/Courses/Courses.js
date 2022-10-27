@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import CourseCard from "../../CourseCard/CourseCard";
+import CourseCard from "../../Others/CourseCard/CourseCard";
 import './courses.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import LeftSideNav from "../../Shared/LeftSideNav/LeftSideNav";

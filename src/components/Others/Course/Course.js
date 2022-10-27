@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Course = () => {
     const courseInfo=useLoaderData();
-    console.log(courseInfo)
     const {intro,description,image_url,details}=courseInfo;
     return (
         <div>
@@ -20,7 +19,7 @@ const Course = () => {
             <Link to='/courses'>
           <Button className='mb-5 me-3' variant="primary">All course</Button>
           </Link>
-          <Link to='/courses'>
+          <Link to={`/details/${courseInfo._id}`}>
           <Button className='mb-5' variant="primary">Get Premium Access</Button>
           </Link>
             </div>
