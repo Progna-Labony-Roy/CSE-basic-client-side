@@ -24,7 +24,7 @@ export const routes=createBrowserRouter([
             {
                 path:'/courses',
                 element:<Courses></Courses>,
-                loader:() => fetch('http://localhost:5000/details')
+                loader:() => fetch('https://server-side-lyart.vercel.app/details')
             },
             {
                 path:'/blog',
@@ -37,12 +37,12 @@ export const routes=createBrowserRouter([
             {
                 path:'/course/:id',
                 element:<Course></Course>,
-                loader:({params})=> fetch(`http://localhost:5000/course/${params.id}`)
+                loader:({params})=> fetch(`https://server-side-lyart.vercel.app/course/${params.id}`)
             },
             {
                 path:'/details/:id',
                 element:<PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-                loader:({params})=> fetch(`http://localhost:5000/details/${params.id}`)
+                loader:({params})=> fetch(`https://server-side-lyart.vercel.app/details/${params.id}`)
                
             },
             {
