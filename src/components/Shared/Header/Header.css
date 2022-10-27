@@ -6,4 +6,10 @@
 .link-item{
     text-decoration: none;
     color: azure;
+    text-underline-position: unset;
+}
+
+.user-img{
+    height: 100px;
+    padding: auto;
 }

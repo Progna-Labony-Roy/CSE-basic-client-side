@@ -1,12 +1,23 @@
 import React from "react";
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 import logo from '../../Pages/Images/logo.png';
 import './Header.css';
+import { FaUser } from "react-icons/fa";
+import { Button, Image } from "react-bootstrap";
 
 const Header = () => {
+  const { user,logOut }=useContext(AuthContext);
+
+  const handleLogOut =() =>{
+    logOut()
+    .then(() =>{})
+    .catch( (error) => console.error(error))
+  }
   return (
     <Navbar
       collapseOnSelect
@@ -23,24 +34,32 @@ const Header = () => {
           <Nav className="me-auto">
           <Link to='/' className='link-item px-2'>Home</Link>
           <Link to='/courses' className='link-item px-2'>Courses</Link>
-
-            {/* <NavDropdown title="Courses" id="collasible-nav-dropdown">
-              <div>
-                {
-                    courses.map(course => <NavDropdown.Item>
-                      <Link to={`/course/${course.id}`}>{course.name}</Link>
-                      </NavDropdown.Item>)
-                }
-            </div>
-              
-            </NavDropdown> */}
             <Link to='/blog' className='link-item px-2'>Blog</Link>
             <Link to='/faq' className='link-item px-2'>FAQ</Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+          <>
+            {
+              user?.uid ?
+              <>
+              <Button variant="light" onClick={handleLogOut}>Log out</Button>
+              <span>{user?.displayName}</span>
+              </>
+              :
+              <>
+              <Link className="link-item px-2" to='/login'>Login</Link>
+              <Link className="link-item px-2" to='/register'>Register</Link>
+              </>
+            }
+            </>
+            <Nav.Link eventKey={2} href=''>
+              {
+                user?.photoURL ?
+                <Image className="user-img" roundedCircle
+                src={user.photoURL}></Image>
+                :<FaUser></FaUser>
+              }
+
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

@@ -1,0 +1,30 @@
+.form-container{
+    margin: 20px auto;
+    border: 1px solid orange;
+    border-radius: 5px;
+    height: 530px;
+    width:40%;
+    padding: 2%;
+}
+
+input{
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 80%;
+    height: 40px;
+    padding: 2%;
+    margin-bottom: 10px;
+
+}
+
+.btn-submit{
+    border-radius: 2px;
+    width: 70%;
+    height: 32px;
+    background-color: rgb(241, 215, 149);
+    font-weight: 700;
+    border: none;
+    margin: 20px 9px 0px;
+    font-size: large;
+    border-radius: 3px;
+}

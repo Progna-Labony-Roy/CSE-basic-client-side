@@ -1,65 +1,55 @@
-import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import toast from 'react-hot-toast';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider } from "firebase/auth";
+import { AuthContext } from "../../Context/AuthProvider";
+import "./Login.css";
 
 const Login = () => {
-  const [error,setError]=useState('');
-  const {signIn ,setLoading}=useContext(AuthContext);
-  const navigate = useNavigate();
-  const location=useLocation();
+  const { googleLogin } = useContext(AuthContext);
 
-  const from=location.state?.from?.pathname || '/'
-
-  const handleLoginButton = (event) =>{
-    event.preventDefault();
-    const form=event.target;
-    const email=form.email.value;
-    const password=form.password.value;
-
-    signIn(email,password)
-    .then(result =>{
-      setError('')
-      const user=result.user;
-      console.log(user);
-      form.reset();
-      if(user.emailVeryfied){
-        navigate(from ,{replace:true})
-      }
-      else{
-        toast.error("Please varify your emial");
-      }
-    })
-    .catch(error=>{
-      console.error(error);
-      setError(error.message);
-    })
-    .finally( () =>{
-      setLoading(false);
-    })
-  }
-    return (
-        <div className="form-container">
-        <h2>Login</h2>
-        <form onSubmit={handleLoginButton}>
-          <div>
-            <label className="form-control" htmlFor="email">
-              Email
-            </label>
-            <input type="email" name="email" placeholder="email"></input>
-          </div>
-          <div>
-            <label className="form-control" htmlFor="password">
-              Password
-            </label>
-            <input type="password" name="password" placeholder="password"></input>
-          </div>
-          <input type='submit' className='btn-submit' vlaue='login'></input>
-        </form>
-        <p>New to ema-john? <Link to='/register'>Create a new account</Link></p>
-        <p className='text-danger'>{error}</p>
-      </div>
-    );
+  const googleProvider = new GoogleAuthProvider();
+  const handleGoogleSignIn = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
+  };
+  return (
+    <div className="form-container">
+      <h2>Login</h2>
+      <form>
+        <div>
+          <input type="email" name="email" placeholder="email"></input>
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="password"></input>
+        </div>
+        <input type="submit" className="btn-submit" vlaue="login"></input>
+      </form>
+      <ButtonGroup vertical>
+        <Button
+          onClick={handleGoogleSignIn}
+          variant="outline-primary"
+          className="btn-width mt-3"
+        >
+          {" "}
+          <FaGoogle></FaGoogle> Log In with google
+        </Button>
+        <Button variant="outline-dark">
+          <FaGithub></FaGithub> Log In with github
+        </Button>
+      </ButtonGroup>
+      <p className="mt-5">
+        New to ema-john? <Link to="/register">Create a new account</Link>
+      </p>
+      <p className="text-danger"></p>
+    </div>
+  );
 };
 
 export default Login;
