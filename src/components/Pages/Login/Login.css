@@ -1,10 +1,6 @@
 .form-container{
-    margin: 20px auto;
-    border: 1px solid orange;
-    border-radius: 5px;
     height: 530px;
     width:40%;
-    padding: 2%;
 }
 
 input{
