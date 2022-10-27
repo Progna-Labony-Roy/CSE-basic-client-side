@@ -8,7 +8,7 @@ import { AuthContext } from "../../Context/AuthProvider";
 import logo from '../../Pages/Images/logo.png';
 import './Header.css';
 import { FaUser } from "react-icons/fa";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Tooltip } from "react-bootstrap";
 
 const Header = () => {
   const { user,logOut }=useContext(AuthContext);
@@ -68,15 +68,15 @@ const Header = () => {
               </>
             }
             </>
-            <Nav.Link eventKey={2} href=''>
+            <Tooltip title={user?.displayName} disableInteractive>
               {
                 user?.photoURL ?
-                <Image style={{height: '40px'}} roundedCircle
-                src={user.photoURL}></Image>
+                <Image style={{height: '30px'}} roundedCircle
+                src={user?.photoURL}></Image>
                 :<FaUser></FaUser>
               }
 
-            </Nav.Link>
+            </Tooltip>
           </Nav>
         </Navbar.Collapse>
       </Container>
