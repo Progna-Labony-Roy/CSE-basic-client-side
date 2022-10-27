@@ -8,6 +8,7 @@ import Home from "../Pages/Home/Home";
 import Courses from "../Pages/Courses/Courses";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes=createBrowserRouter([
     {
@@ -26,7 +27,7 @@ export const routes=createBrowserRouter([
             },
             {
                 path:'/blog',
-                element:<Blog></Blog>
+                element:<PrivateRoute><Blog></Blog></PrivateRoute>
             },
             {
                 path:'/faq',
