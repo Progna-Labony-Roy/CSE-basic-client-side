@@ -2,29 +2,13 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { FaGoogle, FaGithub } from "react-icons/fa";
-import { GoogleAuthProvider } from "firebase/auth";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useState } from "react";
 
 const Register = () => {
-  const { googleLogin, createUser } = useContext(AuthContext);
-  const googleProvider = new GoogleAuthProvider();
+  const { createUser } = useContext(AuthContext);
   const [error,setError]=useState('');
-
-
-  const handleGoogleSignIn = () => {
-    googleLogin(googleProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
 
   const handleSubmit = (event) => {
@@ -34,7 +18,6 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name);
 
     createUser(email, password)
       .then((result) => {
@@ -89,20 +72,6 @@ const Register = () => {
             Register
           </Button>
         </p>
-        <ButtonGroup vertical>
-          <Button
-            onClick={handleGoogleSignIn}
-            variant="outline-primary"
-            className="mt-3"
-          >
-            {" "}
-            <FaGoogle></FaGoogle> Log In with google
-          </Button>
-          <Button variant="outline-dark">
-            <FaGithub></FaGithub> Log In with github
-          </Button>
-        </ButtonGroup>
-
         <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>

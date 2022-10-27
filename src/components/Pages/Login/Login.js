@@ -5,9 +5,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useState } from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => { 
-  const { signIn} =useContext(AuthContext);
+  const { googleLogin,signIn} =useContext(AuthContext);
   const [error,setError]=useState('');
   const location=useLocation();
   const navigate=useNavigate();
@@ -34,6 +37,19 @@ const Login = () => {
      setError(error.message)
     })
   }
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="form-container">
         <h2>Login</h2>
@@ -50,8 +66,22 @@ const Login = () => {
               name="password"
             />
           </Form.Group>
-          <Button variant="primary" type="submit">Login</Button>
-        <p className="mt-">
+          <p><Button variant="primary" type="submit">Login</Button></p>
+          <ButtonGroup vertical>
+          <Button
+            onClick={handleGoogleSignIn}
+            variant="outline-primary"
+            className="mt-3"
+          >
+            {" "}
+            <FaGoogle></FaGoogle> Log In with google
+          </Button>
+          <Button variant="outline-dark">
+            <FaGithub></FaGithub> Log In with github
+          </Button>
+        </ButtonGroup>
+          
+        <p className="mt-3">
         New to ema-john? <Link to="/register">Create a new account</Link>
       </p>
       <p className="text-danger">{error}</p>

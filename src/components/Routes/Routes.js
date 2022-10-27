@@ -9,6 +9,7 @@ import Courses from "../Pages/Courses/Courses";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Others/ErrorPage/ErrorPage";
 
 export const routes=createBrowserRouter([
     {
@@ -53,5 +54,6 @@ export const routes=createBrowserRouter([
                 element:<Register></Register>
             }
         ]
-    }
+    },
+    { path: "*", element: <ErrorPage></ErrorPage> },
 ]);

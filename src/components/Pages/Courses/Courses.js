@@ -19,7 +19,7 @@ const Courses = () => {
                     <Col lg='9'>
                     <div  className="course-container">
                     {allCourse.map((course) => (
-        <CourseCard key={course._id} course={course}></CourseCard>
+        <CourseCard key={course.course_id} course={course}></CourseCard>
       ))}
                     </div>
                     </Col>
