@@ -3,6 +3,16 @@
     width: 40px;
 }
 
+.site-name{
+    color: azure;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.user-img{
+    color: azure;
+}
+
 .link-item{
     text-decoration: none;
     color: azure;
@@ -10,8 +20,8 @@
 }
 
 .user-img{
-    height: 100px;
-    padding: auto;
+   
+    margin: 5px 7px;
 }
 
 .dark {
