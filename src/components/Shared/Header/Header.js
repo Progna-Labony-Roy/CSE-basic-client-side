@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <Navbar
       collapseOnSelect
-      className="mb-5 py-3"
+      className="py-3"
       expand="lg"
       bg="dark"
       variant="light"

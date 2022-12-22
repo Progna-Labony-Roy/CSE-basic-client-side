@@ -1,11 +1,12 @@
 import React from "react";
-import Courses from "../Courses/Courses";
+import './Home.css'
 
 
 const Home = () => {
   return (
-    <div className="mx-auto">
-   {/* <Courses></Courses> */}
+    <div className="info">
+      <h1>Welcome</h1>
+        <h3>Learn from online and build up your career</h3>
     </div>
   );
 };
